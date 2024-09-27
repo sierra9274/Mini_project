@@ -34,7 +34,7 @@ const data = {
       "bi-shield-fill-check",
     ],
     timer: {
-      // 2: 1,
+      2: 1,
       4: 2,
       6: 4,
       8: 6,

@@ -199,7 +199,7 @@ $("#pause-btn").click(() => {
     "Paused",
     `
     <div class="d-flex flex-column align-items-center gap-2">
-    <img src="./Images/pause.png" alt="pause image" style="width:80px;">
+    <img src="./Assets/pause.png" alt="pause image" style="width:80px;">
     <h4>Game Paused !</h4>
     <div class="d-flex justify-content-center align-items-center gap-3">
     <button class="btn btn-outline-primary px-4 py-0 rounded-2 d-flex align-items-center gap-2" id="modal-play-btn">
@@ -257,7 +257,7 @@ function startInterval() {
           showModal(
             "Time OUT !",
             getModalMessage(
-              "./Images/timeout.png",
+              "./Assets/timeout.png",
               "You LOST !",
               `<span>Time Given: <b>${timer[noOfGrids]}</b> min : <b>00</b> secs</span>`
             )
@@ -338,7 +338,7 @@ function checkIsWinner() {
     showModal(
       "Congratulations !",
       getModalMessage(
-        "./Images/winner.png",
+        "./Assets/winner.png",
         "You Won !!",
         `<span>Time Taken: <b>${diffMinutes}</b> min : <b>${diffSeconds}</b> secs</span>`
       )
@@ -379,6 +379,3 @@ function showModal(title, html) {
   }
   myModal.show();
 }
-
-
-// here you go, whatever extra images are used assume it youself something
