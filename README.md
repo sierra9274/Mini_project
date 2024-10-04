@@ -6,3 +6,4 @@ Designed for casual gamers and puzzle enthusiasts alike, Flipper combines the ex
 With easy-to-understand mechanics and dynamic features like the "Replay Level" and "Reset Whole Card" buttons, Flipper ensures that players have full control over their experience, making it a game that can be enjoyed at your own pace.
 
 # Try here.
+https://flipper-git-main-sierras-projects-c49a58a3.vercel.app/
