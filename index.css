@@ -9,7 +9,7 @@
 body {
   background: url("./Assets/Game_Background_190.png");
   background-size:100%;
-  background-repeat: no-repeat;
+  background-repeat:repeat;
 }
 
 #play {
