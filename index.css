@@ -83,12 +83,12 @@ body {
 }
 
 .back {
-  background-color: #c0392b;
+  background-color: #d8ae23;
   color: white;
 }
 
 .front {
-  background-color: green;
+  background-color: rgb(102, 43, 40)
 }
 
 .img-modal-body {

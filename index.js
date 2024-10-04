@@ -243,15 +243,13 @@ function resetALL() {
 
 // ? function to start the interval or timer with progress bar.
 function startInterval() {
+  // Convert fractional minutes to total seconds
+  let totalSeconds = Math.floor(minutes * 60 + seconds);
+  inc = 100 / totalSeconds; // Set progress increment based on total seconds
+  
   interval = setInterval(function () {
     if (!isPaused) {
-      if (seconds === 0) {
-        seconds = 59;
-        minutes--;
-      } else {
-        seconds--;
-      }
-      if (minutes === 0 && seconds === 0) {
+      if (totalSeconds <= 0) {
         clearInterval(interval);
         if (!checkIsWinner()) {
           showModal(
@@ -263,13 +261,19 @@ function startInterval() {
             )
           );
         }
+      } else {
+        totalSeconds--; // Decrement total seconds
+        minutes = Math.floor(totalSeconds / 60); // Calculate remaining minutes
+        seconds = totalSeconds % 60; // Calculate remaining seconds
+        
+        $("#timer").html(`<b>${minutes}</b> min : <b>${seconds}</b> secs`);
+        progress += inc; 
+        $("#time-bar").css("width", progress + "%");
       }
-      $("#timer").html(`<b>${minutes}</b> min : <b>${seconds}</b> secs`);
-      progress += inc;
-      $("#time-bar").css("width", progress + "%");
     }
-  }, 1000);
+  }, 1000); // Update every second
 }
+
 
 // ? Show toasts function
 function showToast(text, icon) {
