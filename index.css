@@ -54,14 +54,59 @@ body {
     border: 1rem ridge  rgb(173, 98, 18);
   }  
 
+/* Default Grid Layout for Large Screens (Desktops) */
 .grid-box {
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Flexible grid */
+  gap: 20px;
   padding: 20px;
-  gap: 10px;
-  column-gap: 10px;
-  background-color: rgba(0, 0, 0, 0.3);
 }
 
+/* Tablets and smaller laptops */
+@media (max-width: 1024px) {
+  .grid-box {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Smaller grid boxes */
+    gap: 15px;
+  }
+
+  .single-card {
+    font-size: 30px; /* Reduce font size */
+  }
+}
+
+/* Mobile devices (Portrait orientation) */
+@media (max-width: 768px) {
+  .grid-box {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Further smaller grid boxes */
+    gap: 10px;
+  }
+
+  .single-card {
+    font-size: 25px; /* Smaller font size for mobile */
+    padding: 10px;
+  }
+
+  #play img {
+    width: 90px; /* Smaller play button for mobile */
+  }
+}
+
+/* Mobile devices (Landscape orientation) */
+@media (max-width: 576px) {
+  .grid-box {
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* Even smaller grid boxes */
+    gap: 8px;
+  }
+
+  .single-card {
+    font-size: 20px; /* Smallest font size */
+    padding: 8px;
+  }
+
+  #play img {
+    width: 70px; /* Adjust play button size */
+  }
+}
 .label {
   font-family: "Literata", serif;
   font-size: 18px;
