@@ -63,6 +63,9 @@ const movesLabel = $("#moves-label");
 // * Toast DOM
 const toast = $("#game-toast");
 
+//DOM for replay button
+const replayButton = $("#replay-btn");
+
 // * Variable to store the counts of flipped
 let count = 0;
 
@@ -119,6 +122,10 @@ function shuffleArray(array) {
 
 // ? Function to set to game page
 function setGame(grids) {
+  // Reset timer
+  minutes = timer[grids];
+  seconds = 0;
+  $("#timer").html(`<b>${minutes}</b> min : <b>00</b> secs`);
   symbols = shuffleArray(symbols);
   minutes = timer[grids];
   gridBoxDom.css("grid-template-columns", "auto ".repeat(grids));
@@ -358,6 +365,37 @@ function startNewGame() {
   setStartPage(true);
 }
 
+function resetGameForReplay() {
+  // clear the current game
+  gridBoxDom.empty();
+
+  //Reset game variables
+  pairs = 0;
+  moves= 0;
+  progress = 0;
+  flipped_Elements = [];
+  grid_box = [];
+  count = 0;
+
+  //reset UI
+  updateMoves(true);
+  updatePairs(true);
+  $("#time-bar").css("width","0%");
+
+  //clear existing intervals
+  clearInterval(interval);
+  
+  // reinitialize the game with the same grid size
+  setGame(noOfGrids);
+
+  //make sure game page is visible
+  gamePageDom.show();
+  startPageDom.hide();
+
+  //unpause the game if it was paused
+  isPaused = false;
+}
+
 // ? Home button which asks for the confirmation
 function homeButtonFunctionality() {
   window.location.reload();
@@ -365,12 +403,20 @@ function homeButtonFunctionality() {
 
 // ? these function shows the modal whenever the timeout and wins the game.
 function showModal(title, html) {
-  gameModal
-    .find(".modal-footer button,.modal-header button")
-    .click(startNewGame);
+  // Remove any existing click handlers
+  gameModal.find(".modal-footer button,.modal-header button").off('click');
+  
+  // Assign specific handlers to each button
+  gameModal.find("#home-btn").click(startNewGame);
+  gameModal.find("#replay-btn").click(function() {
+    myModal.hide(); // Hide the modal
+    resetGameForReplay(); // Call the replay function
+  });
+  
   gameModal.find(".modal-title").text(title);
   gameModal.find(".modal-body").html(html);
   gameModal.find(".modal-footer,.modal-header button").show();
+  
   if (isPaused) {
     gameModal.find(".modal-footer,.modal-header button").hide();
     gameModal.find(".modal-body div > #modal-play-btn").click(function () {
